@@ -100,16 +100,20 @@ export default function BetaPage() {
         <h2 className="text-xl font-semibold text-zinc-900">2. 이렇게 써주세요</h2>
         <ul className="mt-4 space-y-2 text-zinc-700">
           <li className="flex gap-3">
-            <span className="text-indigo-500">·</span>
-            억지로 말고, <b>평소 신앙생활에서 자연스럽게</b> 써보세요.
+            <span className="shrink-0 text-indigo-500">·</span>
+            <span>억지로 말고, <b>평소 신앙생활에서 자연스럽게</b> 써보세요.</span>
           </li>
           <li className="flex gap-3">
-            <span className="text-indigo-500">·</span>
-            가능하면 <b>핵심 기능을 한 번씩 전부</b> 만져봐 주세요 (복습·신앙노트).
+            <span className="shrink-0 text-indigo-500">·</span>
+            <span>
+              가능하면 <b>핵심 기능을 한 번씩 전부</b> 만져봐 주세요 (복습·신앙노트).
+            </span>
           </li>
           <li className="flex gap-3">
-            <span className="text-indigo-500">·</span>
-            한 번 켜고 끝이 아니라, 기간 중 <b>며칠 이상 꾸준히</b> 써보면 좋아요.
+            <span className="shrink-0 text-indigo-500">·</span>
+            <span>
+              한 번 켜고 끝이 아니라, 기간 중 <b>며칠 이상 꾸준히</b> 써보면 좋아요.
+            </span>
           </li>
         </ul>
       </Reveal>
@@ -121,22 +125,28 @@ export default function BetaPage() {
         </h2>
         <ul className="mt-4 space-y-2 text-zinc-700">
           <li className="flex gap-3">
-            <span className="text-indigo-500">·</span>
+            <span className="shrink-0 text-indigo-500">·</span>
             <span>
               <b>설교 복습(OBS)</b> — 핵심 기능이에요. 꼭 한 번 끝까지 해보세요.
             </span>
           </li>
           <li className="flex gap-3">
-            <span className="text-indigo-500">·</span>
-            <b>회원가입·로그인</b> — 처음 들어오는 흐름이 막힘없는지.
+            <span className="shrink-0 text-indigo-500">·</span>
+            <span>
+              <b>회원가입·로그인</b> — 처음 들어오는 흐름이 막힘없는지.
+            </span>
           </li>
           <li className="flex gap-3">
-            <span className="text-indigo-500">·</span>
-            <b>신앙노트</b> 작성·조회.
+            <span className="shrink-0 text-indigo-500">·</span>
+            <span>
+              <b>신앙노트</b> 작성·조회.
+            </span>
           </li>
           <li className="flex gap-3">
-            <span className="text-indigo-500">·</span>
-            본인 <b>기기/OS</b>에서 깨지거나 이상한 화면은 없는지.
+            <span className="shrink-0 text-indigo-500">·</span>
+            <span>
+              본인 <b>기기/OS</b>에서 깨지거나 이상한 화면은 없는지.
+            </span>
           </li>
         </ul>
       </Reveal>
@@ -145,11 +155,11 @@ export default function BetaPage() {
       <Reveal className="mt-14">
         <h2 className="text-xl font-semibold text-zinc-900">4. 이런 걸 제보해주세요</h2>
         <ul className="mt-4 space-y-2 text-zinc-700">
-          <li className="flex gap-3"><span>🐛</span> 안 되는 기능·에러·앱이 꺼지는 현상</li>
-          <li className="flex gap-3"><span>😵</span> 헷갈리거나 어색한 부분 (어디 눌러야 할지 모르겠는 곳)</li>
-          <li className="flex gap-3"><span>🐢</span> 느리거나 이상하게 보이는 화면</li>
-          <li className="flex gap-3"><span>✍️</span> 오타·어색한 문구</li>
-          <li className="flex gap-3"><span>💡</span> “이런 게 있으면 좋겠다” 개선 아이디어</li>
+          <li className="flex gap-3"><span className="shrink-0">🐛</span><span>안 되는 기능·에러·앱이 꺼지는 현상</span></li>
+          <li className="flex gap-3"><span className="shrink-0">😵</span><span>헷갈리거나 어색한 부분 (어디 눌러야 할지 모르겠는 곳)</span></li>
+          <li className="flex gap-3"><span className="shrink-0">🐢</span><span>느리거나 이상하게 보이는 화면</span></li>
+          <li className="flex gap-3"><span className="shrink-0">✍️</span><span>오타·어색한 문구</span></li>
+          <li className="flex gap-3"><span className="shrink-0">💡</span><span>“이런 게 있으면 좋겠다” 개선 아이디어</span></li>
         </ul>
       </Reveal>
 
