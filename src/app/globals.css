@@ -17,6 +17,9 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  /* 한글은 어절 단위로 줄바꿈(중간 끊김 방지), 긴 영문/URL은 필요 시 줄바꿈 */
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 
 /* Hero 등장 애니메이션 */
