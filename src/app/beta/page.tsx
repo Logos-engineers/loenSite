@@ -42,8 +42,10 @@ export default function BetaPage() {
         <Reveal className="mt-16">
           <h2 className="text-xl font-semibold text-zinc-900">어떤 앱인가요?</h2>
           <p className="mt-2 text-zinc-600">{app.oneLiner}</p>
-          <div className="mt-5 grid gap-4 sm:grid-cols-3">
-            {app.features.map((f) => (
+          <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            {app.features
+              .filter((f) => !f.title.includes("오이코스"))
+              .map((f) => (
               <div
                 key={f.title}
                 className="rounded-xl border border-zinc-200 bg-white p-4"
@@ -103,7 +105,7 @@ export default function BetaPage() {
           </li>
           <li className="flex gap-3">
             <span className="text-indigo-500">·</span>
-            가능하면 <b>핵심 기능을 한 번씩 전부</b> 만져봐 주세요 (복습·신앙노트·오이코스).
+            가능하면 <b>핵심 기능을 한 번씩 전부</b> 만져봐 주세요 (복습·신앙노트).
           </li>
           <li className="flex gap-3">
             <span className="text-indigo-500">·</span>
@@ -130,7 +132,7 @@ export default function BetaPage() {
           </li>
           <li className="flex gap-3">
             <span className="text-indigo-500">·</span>
-            <b>신앙노트</b> 작성·조회, <b>오이코스(그룹)</b> 가입·활동.
+            <b>신앙노트</b> 작성·조회.
           </li>
           <li className="flex gap-3">
             <span className="text-indigo-500">·</span>

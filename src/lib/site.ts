@@ -5,8 +5,7 @@ export const site = {
   tagline: "만들어서 섬기다.",
   description:
     "Loen은 Logos 교회 청년부의 개발 동아리입니다. 우리가 직접 만든 서비스와 소식을 한곳에 모았습니다.",
-  // 배포 도메인 확정 후 채움 (Vercel 연결)
-  url: "https://example.com",
+  url: "https://loenstudio.dev",
   contactEmail: "loen.logos@gmail.com",
   discordUrl: "", // 베타 모집용 디스코드 초대 링크
   githubUrl: "https://github.com/Logos-engineers",
