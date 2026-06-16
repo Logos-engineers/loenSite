@@ -9,6 +9,7 @@ export type Post = {
   body: string; // 본문 (마크다운 텍스트, 추후 MDX)
   cta?: { label: string; href: string }; // 본문 하단 행동 버튼 (선택)
   applyForm?: boolean; // true 면 본문 하단에 테스터 신청 폼 렌더
+  deadline?: string; // 있으면 제목 아래에 마감일 강조 뱃지 표시
 };
 
 export const posts: Post[] = [
@@ -20,6 +21,7 @@ export const posts: Post[] = [
       "구글 플레이 정식 출시까지 딱 한 걸음. 14일 비공개 테스트를 함께해 줄 안드로이드 테스터를 모집해요. (완주 시 소정의 상품권 🎁)",
     productTag: "loen",
     applyForm: true,
+    deadline: "6월 18일(목)",
     body: `안녕하세요, 앱 개발 동아리 로엔입니다.
 
 그동안 청년부를 위해 만들어 온 앱이 이제 정식 출시까지 딱 한 걸음 남았어요.
@@ -45,6 +47,7 @@ export const posts: Post[] = [
 · 한 번 켜고 끝이 아니라, 기간 중 며칠 이상 꾸준히 써보면 좋아요.
 
 ■ 참고
+· 12명이 모이면 마감일 전이라도 조기 마감될 수 있어요.
 · iOS는 이미 테스터 모집이 끝나서, 이번 모집은 안드로이드 전용이에요.
 · 14일 연속 참여가 채워져야 정식 출시를 신청할 수 있어요. 끝까지 함께해 주시면 큰 힘이 됩니다.
 
