@@ -10,6 +10,7 @@ export type Post = {
   cta?: { label: string; href: string }; // 본문 하단 행동 버튼 (선택)
   applyForm?: boolean; // true 면 본문 하단에 테스터 신청 폼 렌더
   deadline?: string; // 있으면 제목 아래에 마감일 강조 뱃지 표시
+  testPeriod?: string; // 있으면 마감 뱃지 아래에 테스트 진행 기간 표시
 };
 
 export const posts: Post[] = [
@@ -22,6 +23,7 @@ export const posts: Post[] = [
     productTag: "loen",
     applyForm: true,
     deadline: "6월 18일(목)",
+    testPeriod: "6월 19일 ~ 7월 3일",
     body: `안녕하세요, 앱 개발 동아리 로엔입니다.
 
 그동안 청년부를 위해 만들어 온 앱이 이제 정식 출시까지 딱 한 걸음 남았어요.

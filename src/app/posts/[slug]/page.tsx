@@ -39,10 +39,19 @@ export default async function PostPage({
     <article className="mx-auto max-w-2xl px-6 py-20">
       <time className="text-sm text-zinc-400">{post.date}</time>
       <h1 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-900">{post.title}</h1>
-      {post.deadline && !applyClosed && (
-        <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-rose-50 px-4 py-2 text-sm font-bold text-rose-600 ring-1 ring-rose-100">
-          🗓️ 신청 마감 · {post.deadline}까지
-        </p>
+      {((post.deadline && !applyClosed) || post.testPeriod) && (
+        <div className="mt-4 flex flex-wrap gap-2">
+          {post.deadline && !applyClosed && (
+            <span className="inline-flex items-center gap-2 rounded-full bg-rose-50 px-4 py-2 text-sm font-bold text-rose-600 ring-1 ring-rose-100">
+              🗓️ 신청 마감 · {post.deadline}까지
+            </span>
+          )}
+          {post.testPeriod && (
+            <span className="inline-flex items-center gap-2 rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700 ring-1 ring-indigo-100">
+              🧪 테스트 기간 · {post.testPeriod}
+            </span>
+          )}
+        </div>
       )}
       {/* 본문: 지금은 plain 텍스트 — 다음 단계에서 MDX 렌더로 교체 */}
       <div className="mt-8 whitespace-pre-line leading-relaxed text-zinc-700">
