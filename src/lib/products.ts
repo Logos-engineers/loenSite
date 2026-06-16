@@ -19,6 +19,8 @@ export type Product = {
   downloads: Download[];
   // 관련 소식 필터용 태그 (posts.productTag 와 매칭)
   tag: string;
+  // true 면 상세를 비공개하고 "곧 공개" 연출만 노출 (홈 카드도 가림)
+  comingSoon?: boolean;
 };
 
 export const products: Product[] = [
@@ -29,6 +31,7 @@ export const products: Product[] = [
     oneLiner: "설교 복습·신앙노트·오이코스를 한 앱에서. 청년부를 위한 신앙 앱.",
     status: "beta",
     tag: "loen",
+    comingSoon: true,
     about:
       "loen app은 교회 청년부 공동체를 위해 만든 신앙 앱입니다. 설교를 다시 곱씹는 복습(OBS), 나의 신앙노트, 우리 그룹(오이코스) 활동을 한 곳에서 이어갑니다. 현재 정식 출시 전 베타 단계입니다.",
     features: [

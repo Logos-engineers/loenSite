@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { products, getProduct } from "@/lib/products";
 import { posts } from "@/lib/posts";
+import ComingSoonHero from "@/components/ComingSoonHero";
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -16,6 +17,8 @@ export async function generateMetadata({
   const { slug } = await params;
   const product = getProduct(slug);
   if (!product) return {};
+  if (product.comingSoon)
+    return { title: product.name, description: "곧 공개됩니다." };
   return { title: product.name, description: product.oneLiner };
 }
 
@@ -27,6 +30,20 @@ export default async function ProductPage({
   const { slug } = await params;
   const product = getProduct(slug);
   if (!product) notFound();
+
+  // 곧 공개 — 상세 비공개, WebGL 연출만 노출 (모집 중이면 그 소식으로 링크)
+  if (product.comingSoon) {
+    const recruit = posts.find(
+      (p) => p.productTag === product.tag && p.applyForm,
+    );
+    return (
+      <ComingSoonHero
+        label={product.name}
+        ctaHref={recruit ? `/posts/${recruit.slug}` : undefined}
+        ctaLabel={recruit ? "베타 테스터 모집 중 →" : undefined}
+      />
+    );
+  }
 
   const related = posts.filter((p) => p.productTag === product.tag);
 

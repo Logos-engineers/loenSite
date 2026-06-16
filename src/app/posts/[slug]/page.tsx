@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { posts, getPost } from "@/lib/posts";
+import TesterForm from "@/components/TesterForm";
+import { getTesterCount, TESTER_CAPACITY } from "@/lib/notion-tester";
 
 export function generateStaticParams() {
   return posts.map((p) => ({ slug: p.slug }));
@@ -26,6 +28,13 @@ export default async function PostPage({
   const post = getPost(slug);
   if (!post) notFound();
 
+  // 신청 폼: 정원(12명) 차면 마감. count 조회 실패(null)면 안전하게 폼 열어둠.
+  let applyClosed = false;
+  if (post.applyForm) {
+    const count = await getTesterCount();
+    applyClosed = count !== null && count >= TESTER_CAPACITY;
+  }
+
   return (
     <article className="mx-auto max-w-2xl px-6 py-20">
       <time className="text-sm text-zinc-400">{post.date}</time>
@@ -34,6 +43,28 @@ export default async function PostPage({
       <div className="mt-8 whitespace-pre-line leading-relaxed text-zinc-700">
         {post.body}
       </div>
+      {post.cta && (
+        <a
+          href={post.cta.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-10 inline-block rounded-full bg-indigo-500 px-7 py-3.5 text-sm font-semibold text-white shadow-[0_0_30px_rgba(99,102,241,0.35)] transition-all hover:-translate-y-0.5 hover:bg-indigo-400"
+        >
+          {post.cta.label}
+        </a>
+      )}
+      {post.applyForm &&
+        (applyClosed ? (
+          <div className="mt-10 rounded-2xl border border-zinc-200 bg-zinc-50 p-8 text-center">
+            <p className="text-2xl">🙏</p>
+            <p className="mt-2 font-semibold text-zinc-800">모집이 마감되었어요</p>
+            <p className="mt-1 text-sm text-zinc-600">
+              정원 {TESTER_CAPACITY}명이 모두 찼어요. 관심 가져주셔서 감사합니다!
+            </p>
+          </div>
+        ) : (
+          <TesterForm />
+        ))}
     </article>
   );
 }

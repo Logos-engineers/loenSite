@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const APK_URL =
-  "https://expo.dev/accounts/namhyunseo/projects/Loen-project/builds/e590dd2a-fed5-4fb4-8409-76d43fe485e5";
+  "https://expo.dev/artifacts/eas/WDkdMJLjbXdWbiklNelvaoGBP2A5gKeHfIfK6dY6Wm8.apk";
 const DISCORD_URL = ""; // 준비되면 채움
 const PERIOD = "2026년 6월 28일";
 

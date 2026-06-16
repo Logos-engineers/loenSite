@@ -19,13 +19,21 @@ export default function ProductsPage() {
           >
             <div className="mb-3 flex items-center gap-2">
               <h2 className="text-lg font-medium text-zinc-900">{p.name}</h2>
-              {p.status === "beta" && (
-                <span className="rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-medium text-indigo-600">
-                  베타
+              {p.comingSoon ? (
+                <span className="rounded-full bg-zinc-900 px-2 py-0.5 text-xs font-medium text-white">
+                  Coming soon
                 </span>
+              ) : (
+                p.status === "beta" && (
+                  <span className="rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-medium text-indigo-600">
+                    베타
+                  </span>
+                )
               )}
             </div>
-            <p className="text-sm text-zinc-600">{p.oneLiner}</p>
+            <p className="text-sm text-zinc-600">
+              {p.comingSoon ? "곧 공개됩니다 ✨" : p.oneLiner}
+            </p>
           </Link>
         ))}
       </div>
