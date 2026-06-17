@@ -6,7 +6,7 @@ export const site = {
   description:
     "Loen은 Logos 교회 청년부의 개발 동아리입니다. 우리가 직접 만든 서비스와 소식을 한곳에 모았습니다.",
   url: "https://loenstudio.dev",
-  contactEmail: "loen.logos@gmail.com",
+  contactEmail: "contact@loenstudio.dev",
   discordUrl: "", // 베타 모집용 디스코드 초대 링크
   githubUrl: "https://github.com/Logos-engineers",
 } as const;
