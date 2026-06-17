@@ -28,10 +28,11 @@ export default async function PostPage({
   const post = getPost(slug);
   if (!post) notFound();
 
-  // 신청 폼: 정원(12명) 차면 마감. count 조회 실패(null)면 안전하게 폼 열어둠.
+  // 안드로이드 신청 폼만 정원(12명) 차면 마감. iOS는 마감 없음.
+  // count 조회 실패(null)면 안전하게 폼 열어둠.
   let applyClosed = false;
-  if (post.applyForm) {
-    const count = await getTesterCount();
+  if (post.applyForm === "Android") {
+    const count = await getTesterCount("Android");
     applyClosed = count !== null && count >= TESTER_CAPACITY;
   }
 
@@ -77,7 +78,7 @@ export default async function PostPage({
             </p>
           </div>
         ) : (
-          <TesterForm />
+          <TesterForm platform={post.applyForm} />
         ))}
     </article>
   );

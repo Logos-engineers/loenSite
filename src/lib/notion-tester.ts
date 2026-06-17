@@ -4,7 +4,9 @@
 const NOTION_BASE = "https://api.notion.com/v1";
 const NOTION_VERSION = "2025-09-03";
 
-// 구글 플레이 비공개 테스트 최소 인원
+export type Platform = "Android" | "iOS";
+
+// 구글 플레이 비공개 테스트 최소 인원 (안드로이드 한정 마감 기준)
 export const TESTER_CAPACITY = 12;
 
 function cfg() {
@@ -22,8 +24,8 @@ function headers(token: string) {
   };
 }
 
-// 현재 신청 인원 수. 설정 누락·오류 시 null (호출부에서 '폼 열어둠'으로 안전 처리).
-export async function getTesterCount(): Promise<number | null> {
+// 특정 플랫폼의 현재 신청 인원 수. 설정 누락·오류 시 null.
+export async function getTesterCount(platform: Platform): Promise<number | null> {
   const { token, dataSourceId } = cfg();
   if (!token || !dataSourceId) return null;
 
@@ -37,6 +39,7 @@ export async function getTesterCount(): Promise<number | null> {
         cache: "no-store",
         body: JSON.stringify({
           page_size: 100,
+          filter: { property: "플랫폼", select: { equals: platform } },
           ...(cursor ? { start_cursor: cursor } : {}),
         }),
       });
@@ -61,8 +64,9 @@ export async function getTesterCount(): Promise<number | null> {
 // 신청 행 추가. 성공 true.
 export async function createTesterRow(input: {
   name: string;
-  gmail: string;
+  email: string;
   phone?: string;
+  platform: Platform;
 }): Promise<boolean> {
   const { token, dataSourceId } = cfg();
   if (!token || !dataSourceId) {
@@ -79,8 +83,9 @@ export async function createTesterRow(input: {
         parent: { type: "data_source_id", data_source_id: dataSourceId },
         properties: {
           이름: { title: [{ text: { content: input.name } }] },
-          Gmail: { email: input.gmail },
+          이메일: { email: input.email },
           ...(input.phone ? { 핸드폰: { phone_number: input.phone } } : {}),
+          플랫폼: { select: { name: input.platform } },
           상태: { select: { name: "신청" } },
         },
       }),

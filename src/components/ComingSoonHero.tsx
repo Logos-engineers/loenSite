@@ -267,7 +267,7 @@ export default function ComingSoonHero({
           CONTINUED
         </h1>
         <p className="mx-auto mt-7 max-w-md text-base font-medium leading-relaxed text-zinc-100 [text-shadow:0_2px_20px_rgba(0,0,0,0.85)]">
-          로엔의 첫 번째 앱을 준비하고 있어요.
+          로엔의 새로운 앱을 준비하고 있어요.
           <br />곧, 가장 좋은 모습으로 만나요.
         </p>
         {ctaHref && ctaLabel && (

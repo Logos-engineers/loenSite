@@ -2,20 +2,54 @@
 
 import { useActionState, useEffect, useRef, useState } from "react";
 import { applyTester, type ApplyState } from "@/lib/apply-tester";
+import type { Platform } from "@/lib/notion-tester";
 
 const inputClass =
   "mt-1.5 w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 outline-none transition-colors focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100";
 
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
-export default function TesterForm() {
+const COPY: Record<
+  Platform,
+  {
+    emailLabel: string;
+    emailPlaceholder: string;
+    emailHelp: string;
+    confirmEmailLabel: string;
+    successDesc: string;
+  }
+> = {
+  Android: {
+    emailLabel: "구글 계정 (Gmail)",
+    emailPlaceholder: "you@gmail.com",
+    emailHelp: "플레이 스토어 테스터 등록에 쓰는 주소예요. 정확히 입력해주세요.",
+    confirmEmailLabel: "Gmail",
+    successDesc:
+      "운영진이 테스터 명단에 등록한 뒤, 설치용 초대 링크를 보내드릴게요.",
+  },
+  iOS: {
+    emailLabel: "Apple ID (이메일)",
+    emailPlaceholder: "you@example.com",
+    emailHelp: "TestFlight 초대에 쓰는 Apple ID 이메일이에요. 정확히 입력해주세요.",
+    confirmEmailLabel: "Apple ID",
+    successDesc:
+      "운영진이 TestFlight로 초대드릴게요. TestFlight 앱에서 설치하시면 돼요.",
+  },
+};
+
+export default function TesterForm({
+  platform = "Android",
+}: {
+  platform?: Platform;
+}) {
+  const copy = COPY[platform];
   const [state, action, pending] = useActionState<ApplyState, FormData>(
     applyTester,
     null,
   );
   const formRef = useRef<HTMLFormElement>(null);
   const [name, setName] = useState("");
-  const [gmail, setGmail] = useState("");
+  const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [clientError, setClientError] = useState<string | null>(null);
@@ -30,9 +64,7 @@ export default function TesterForm() {
       <div className="mt-10 rounded-2xl border border-emerald-200 bg-emerald-50 p-8 text-center">
         <p className="text-2xl">🎉</p>
         <p className="mt-2 font-semibold text-emerald-800">신청이 접수됐어요!</p>
-        <p className="mt-1 text-sm text-emerald-700">
-          운영진이 테스터 명단에 등록한 뒤, 설치용 초대 링크를 보내드릴게요.
-        </p>
+        <p className="mt-1 text-sm text-emerald-700">{copy.successDesc}</p>
       </div>
     );
   }
@@ -42,8 +74,8 @@ export default function TesterForm() {
       setClientError("이름을 입력해주세요.");
       return;
     }
-    if (!EMAIL_RE.test(gmail.trim())) {
-      setClientError("구글 계정(Gmail) 주소를 정확히 입력해주세요.");
+    if (!EMAIL_RE.test(email.trim())) {
+      setClientError(`${copy.emailLabel} 주소를 정확히 입력해주세요.`);
       return;
     }
     setClientError(null);
@@ -53,6 +85,7 @@ export default function TesterForm() {
   return (
     <>
       <form ref={formRef} action={action} className="mt-10 space-y-5">
+        <input type="hidden" name="platform" value={platform} />
         <div>
           <label htmlFor="name" className="text-sm font-medium text-zinc-700">
             이름 <span className="text-indigo-500">*</span>
@@ -69,21 +102,19 @@ export default function TesterForm() {
         </div>
 
         <div>
-          <label htmlFor="gmail" className="text-sm font-medium text-zinc-700">
-            구글 계정 (Gmail) <span className="text-indigo-500">*</span>
+          <label htmlFor="email" className="text-sm font-medium text-zinc-700">
+            {copy.emailLabel} <span className="text-indigo-500">*</span>
           </label>
           <input
-            id="gmail"
-            name="gmail"
+            id="email"
+            name="email"
             type="email"
-            value={gmail}
-            onChange={(e) => setGmail(e.target.value)}
-            placeholder="you@gmail.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder={copy.emailPlaceholder}
             className={inputClass}
           />
-          <p className="mt-1.5 text-xs text-zinc-400">
-            플레이 스토어 테스터 등록에 쓰는 주소예요. 정확히 입력해주세요.
-          </p>
+          <p className="mt-1.5 text-xs text-zinc-400">{copy.emailHelp}</p>
         </div>
 
         <div>
@@ -139,7 +170,8 @@ export default function TesterForm() {
               입력 내용을 확인해주세요
             </h3>
             <p className="mt-1 text-sm text-zinc-500">
-              이대로 신청할까요? Gmail 주소로 테스터 등록이 진행돼요.
+              이대로 신청할까요? {copy.confirmEmailLabel} 주소로 테스터 등록이
+              진행돼요.
             </p>
 
             <dl className="mt-5 space-y-3 rounded-xl bg-zinc-50 p-4 text-sm">
@@ -148,8 +180,10 @@ export default function TesterForm() {
                 <dd className="font-medium text-zinc-900">{name}</dd>
               </div>
               <div className="flex gap-3">
-                <dt className="w-16 shrink-0 text-zinc-500">Gmail</dt>
-                <dd className="break-all font-medium text-zinc-900">{gmail}</dd>
+                <dt className="w-16 shrink-0 text-zinc-500">
+                  {copy.confirmEmailLabel}
+                </dt>
+                <dd className="break-all font-medium text-zinc-900">{email}</dd>
               </div>
               {phone.trim() && (
                 <div className="flex gap-3">
