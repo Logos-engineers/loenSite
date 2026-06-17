@@ -211,6 +211,28 @@ export default function BetaPage() {
         </div>
       </Reveal>
 
+      {/* 참여 이벤트 */}
+      <Reveal className="mt-16">
+        <h2 className="text-xl font-semibold text-zinc-900">작은 감사 이벤트 🎁</h2>
+        <div className="mt-4 rounded-2xl border border-indigo-200 bg-indigo-50/70 p-6">
+          <ul className="space-y-3 text-zinc-700">
+            <li className="flex gap-3">
+              <span className="shrink-0">🎁</span>
+              <span>
+                테스트에 <b>참여해 주신 모든 분</b>께 소정의 상품권을 드려요.
+              </span>
+            </li>
+            <li className="flex gap-3">
+              <span className="shrink-0">🏆</span>
+              <span>
+                특히 <b>14일 중 12일(80%) 이상</b> 출석하며 꾸준히 활동해 주신 분께는{" "}
+                <b>더 큰 상품</b>을 준비했어요. 매일 들러 주시면 그만큼 도움이 돼요!
+              </span>
+            </li>
+          </ul>
+        </div>
+      </Reveal>
+
       {/* 마무리 */}
       <Reveal className="mt-16">
         <div className="rounded-2xl bg-zinc-900 p-8 text-center">
