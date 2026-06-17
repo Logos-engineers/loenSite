@@ -23,7 +23,7 @@ export const posts: Post[] = [
     productTag: "loen",
     applyForm: "Android",
     deadline: "6월 18일(목)",
-    testPeriod: "6월 19일 ~ 7월 3일",
+    testPeriod: "6월 18일 ~ 7월 1일",
     body: `안녕하세요, 앱 개발 동아리 로엔입니다.
 
 그동안 청년부를 위해 만들어 온 앱이 이제 정식 출시까지 딱 한 걸음 남았어요.
@@ -63,7 +63,7 @@ export const posts: Post[] = [
       "아이폰에서 로엔의 새 앱을 미리 써볼 iOS 테스터를 모집해요. TestFlight로 참여하고, 완주 시 소정의 상품권 🎁",
     productTag: "loen",
     applyForm: "iOS",
-    testPeriod: "6월 19일 ~ 7월 3일",
+    testPeriod: "6월 18일 ~ 7월 1일",
     body: `안녕하세요, 앱 개발 동아리 로엔입니다.
 
 그동안 청년부를 위해 만들어 온 앱을 아이폰에서도 미리 써보고 함께 다듬어주실 분을 찾아요. 정식 출시 전, iOS에서 테스트해주실 분을 모집합니다.
