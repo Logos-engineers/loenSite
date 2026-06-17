@@ -6,9 +6,7 @@ export const TEST_PERIOD = "6월 18일 ~ 7월 1일";
 
 // 안드로이드: 구글 플레이 비공개 테스트 참여(opt-in) 링크
 export const ANDROID_OPTIN_LINK = ""; // TODO: 채우기
-
-// iOS: TestFlight 초대(공개) 링크
-export const IOS_TESTFLIGHT_LINK = ""; // TODO: 채우기
+// iOS는 내부(Internal) 테스터 방식 — 공개 링크 없이 팀 초대 메일로 진행하므로 링크 상수 없음.
 
 // 로그인 권장 방식
 export const LOGIN_METHOD = "구글 계정(Gmail) 로그인";

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
-import { IOS_TESTFLIGHT_LINK } from "../_config";
 import { Step, Callout, BackToGuide } from "../_ui";
 
 export const metadata: Metadata = {
@@ -20,43 +19,37 @@ export default function IosPage() {
           iPhone(TestFlight) 설치 안내
         </h1>
         <p className="mt-5 text-lg leading-relaxed text-zinc-600">
-          아이폰에서는 Apple의 베타 테스트 앱 <b>TestFlight</b>를 통해 설치해요.
-          아래 순서대로 따라오시면 됩니다.
+          아이폰은 Apple의 베타 테스트 앱 <b>TestFlight</b>로 설치해요. 다른 앱보다
+          한 단계가 더 있는데, <b>① 팀 초대 메일 수락 → ② TestFlight에서 설치</b>{" "}
+          순서만 기억하시면 돼요.
         </p>
       </Reveal>
 
       <Reveal className="mt-12">
         <div className="space-y-4">
-          <Step n={1} title="TestFlight 설치">
-            App Store에서 Apple의 무료 앱 <b>TestFlight</b>를 먼저 설치해 주세요.
+          <Step n={1} title="TestFlight 미리 설치">
+            App Store에서 Apple의 무료 앱 <b>TestFlight</b>를 먼저 깔아두세요.
           </Step>
-          <Step n={2} title="초대 수락">
-            운영진이 보낸 TestFlight 초대를 아이폰에서 열어주세요. (이메일 초대의{" "}
-            <b>“View in TestFlight”</b> 버튼 또는 공개 링크) TestFlight 앱이 열려요.
-            초대는 <b>운영진에게 알려준 Apple ID 이메일</b> 기준이에요.
-            {IOS_TESTFLIGHT_LINK ? (
-              <a
-                href={IOS_TESTFLIGHT_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-3 inline-block rounded-full bg-indigo-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-indigo-400"
-              >
-                TestFlight 초대 열기 →
-              </a>
-            ) : (
-              <p className="mt-2 text-xs text-zinc-400">
-                초대 링크는 개별로 안내드릴게요.
-              </p>
-            )}
+          <Step n={2} title="팀 초대 메일 수락 (첫 관문)">
+            운영진이 보낸 <b>App Store Connect 팀 초대 메일</b>을 열어,{" "}
+            <b>신청 때 알려주신 Apple ID</b>로 수락해 주세요. 이 수락이 되어야 다음
+            단계로 넘어갈 수 있어요.
+            <p className="mt-2 text-xs text-zinc-400">
+              초대 메일은 개별로 보내드려요. 안 보이면 스팸함도 확인해 주세요.
+            </p>
           </Step>
-          <Step n={3} title="설치">
-            TestFlight에서 Loen의 <b>[설치]</b>를 누르면 끝!
+          <Step n={3} title="잠깐 기다리기">
+            수락이 확인되면 운영진이 여러분을 <b>TestFlight 테스터로 추가</b>해요. 이
+            단계는 따로 하실 게 없어요. 추가가 끝나면 다시 안내드릴게요.
           </Step>
-          <Step n={4} title="실행·업데이트">
+          <Step n={4} title="TestFlight에서 설치">
+            테스터로 추가되면 <b>TestFlight 앱</b>에 Loen이 떠요. <b>[설치]</b>를 누르면 끝!
+          </Step>
+          <Step n={5} title="실행·업데이트">
             홈 화면 또는 TestFlight에서 실행해요. 새 빌드가 나오면 TestFlight에
             업데이트가 떠요.
           </Step>
-          <Step n={5} title="유효기간">
+          <Step n={6} title="유효기간">
             TestFlight 빌드는 보통 <b>90일</b> 후 만료되며, 새 빌드로 갱신돼요.
           </Step>
         </div>
@@ -64,8 +57,9 @@ export default function IosPage() {
 
       <Reveal className="mt-10">
         <Callout tone="warn" title="이것만 기억해 주세요">
-          외부 테스터의 경우 <b>첫 빌드는 Apple 베타 심사</b>로 잠시 지연될 수 있어요.
-          설치가 바로 안 되면 조금 기다렸다가 다시 시도해 주세요.
+          반드시 <b>신청 때 알려주신 Apple ID</b>로 팀 초대 메일을 수락해야 해요.
+          다른 계정으로 받으면 앱이 보이지 않아요. 2번(초대 수락)과 4번(설치)
+          사이에 운영진이 테스터로 추가하는 시간이 잠깐 필요할 수 있어요.
         </Callout>
       </Reveal>
 
