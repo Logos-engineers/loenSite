@@ -10,8 +10,16 @@ export type Member = {
 export const members: Member[] = [
   {
     name: "남현서",
-    role: "개발",
+    role: "개발 · 팀장",
     image: "/members/namhyunseo.png",
     bio: "onu(온유)를 만들고 있어요.",
+  },
+  {
+    name: "박채연",
+    role: "기획",
+  },
+  {
+    name: "이윤재",
+    role: "디자인",
   },
 ];
