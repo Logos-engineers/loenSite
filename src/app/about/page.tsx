@@ -6,48 +6,64 @@ export const metadata: Metadata = { title: "소개" };
 
 export default function AboutPage() {
   return (
-    <div className="mx-auto max-w-3xl px-6 py-20">
-      <h1 className="text-3xl font-semibold tracking-tight text-zinc-900">{site.name} 소개</h1>
-      <p className="mt-6 text-lg text-zinc-600">
-        Loen은 Logos 교회 청년부의 개발 동아리입니다.
-        <br />
-        우리가 직접 만든 서비스와 소식을 한곳에 모았습니다.
+    <div className="mx-auto max-w-3xl px-6 py-16 text-center">
+      <h1 className="sr-only">{site.name} 소개</h1>
+
+      {/* 히어로 — 로고 + 한 줄 정체성 */}
+      <img
+        src="/loen-logo.png"
+        alt="loen — Build together"
+        className="mx-auto h-32 w-auto sm:h-40"
+      />
+      <p className="mx-auto mt-8 max-w-md text-pretty text-lg leading-relaxed text-zinc-700 sm:text-xl">
+        loen은 <b className="font-semibold text-zinc-900">logos-engineers</b>라는 뜻이에요.{" "}
+        <br className="hidden sm:block" />
+        무언가 만드는 걸 좋아하는 사람들이 모여 있는 곳이죠.
       </p>
 
-      <h2 className="mt-12 text-xl font-semibold text-zinc-900">왜 만드나</h2>
-      <p className="mt-3 text-zinc-600">
-        {/* TODO: 동아리의 시작·비전·가치를 채우세요. */}
-        청년부 공동체에 실제로 필요한 도구를 직접 만들어 섬기는 것이 목표입니다.
-      </p>
+      <div className="mx-auto mt-16 h-px w-16 bg-zinc-200" />
 
-      <h2 className="mt-12 text-xl font-semibold text-zinc-900">멤버</h2>
-      <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {members.map((m) => (
-          <div
-            key={m.name}
-            className="overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm"
-          >
-            {m.image ? (
-              <div className="aspect-[4/5] overflow-hidden bg-gradient-to-b from-indigo-50 to-white">
+      {/* 왜 만드나 */}
+      <section className="mt-16">
+        <p className="font-mono text-xs uppercase tracking-widest text-indigo-500">// why</p>
+        <h2 className="mt-2 text-2xl font-semibold tracking-tight text-zinc-900">왜 만드나</h2>
+        <p className="mx-auto mt-4 max-w-md text-pretty leading-relaxed text-zinc-600">
+          청년부 공동체에 실제로 필요한 도구를 직접 만들어 섬기는 것이 목표입니다.
+        </p>
+      </section>
+
+      {/* 멤버 */}
+      <section className="mt-16">
+        <p className="font-mono text-xs uppercase tracking-widest text-indigo-500">// team</p>
+        <h2 className="mt-2 text-2xl font-semibold tracking-tight text-zinc-900">멤버</h2>
+        <div className="mx-auto mt-8 grid max-w-2xl gap-4 sm:grid-cols-3">
+          {members.map((m) => (
+            <div
+              key={m.name}
+              className="group relative rounded-2xl border border-zinc-200 bg-white px-5 py-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-md"
+            >
+              {/* 오른쪽 위 미니 onu 로고 — onu를 만든 멤버 표식 */}
+              <img
+                src="/onu-logo.png"
+                alt="onu"
+                className="absolute right-3 top-3 h-4 w-4 rounded-[4px]"
+              />
+              {m.image ? (
                 <img
                   src={m.image}
-                  alt={`${m.name} 프로필`}
-                  className="h-full w-full object-cover object-top"
+                  alt={m.name}
+                  className="mx-auto h-16 w-16 rounded-full object-cover ring-1 ring-zinc-200"
                 />
-              </div>
-            ) : (
-              <div className="flex aspect-[4/5] items-center justify-center bg-zinc-100 text-3xl font-semibold text-zinc-400">
-                {m.name.slice(0, 1)}
-              </div>
-            )}
-            <div className="p-4">
-              <div className="flex items-baseline gap-2">
-                <h3 className="font-semibold text-zinc-900">{m.name}</h3>
-                <span className="text-xs font-medium text-indigo-600">{m.role}</span>
-              </div>
-              {m.bio && <p className="mt-1 text-sm text-zinc-600">{m.bio}</p>}
+              ) : (
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-indigo-50 to-violet-100 text-lg font-semibold text-indigo-400">
+                  {m.name.slice(0, 1)}
+                </div>
+              )}
+              <h3 className="mt-3 text-lg font-semibold text-zinc-900">{m.name}</h3>
+              <p className="mt-1.5 font-mono text-xs text-indigo-600">// {m.role}</p>
+              {m.bio && <p className="mt-3 text-pretty text-sm text-zinc-600">{m.bio}</p>}
               {m.links && m.links.length > 0 && (
-                <div className="mt-3 flex flex-wrap gap-3 text-sm">
+                <div className="mt-4 flex flex-wrap justify-center gap-3 text-sm">
                   {m.links.map((l) => (
                     <a
                       key={l.href}
@@ -60,11 +76,11 @@ export default function AboutPage() {
                 </div>
               )}
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </section>
 
-      <div className="mt-12 flex gap-4 text-sm">
+      <div className="mt-16 flex justify-center gap-6 text-sm">
         <a href={`mailto:${site.contactEmail}`} className="text-indigo-600 hover:text-indigo-500">
           문의하기
         </a>
