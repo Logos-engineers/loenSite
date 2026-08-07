@@ -26,23 +26,20 @@ export type Product = {
 export const products: Product[] = [
   {
     slug: "loen",
-    // 앱 정식 명칭 미발표 — 임시로 "loen app" 표기
-    name: "loen app",
+    name: "onu(온유)",
     oneLiner: "설교 복습·신앙노트·오이코스를 한 앱에서. 청년부를 위한 신앙 앱.",
-    status: "beta",
+    status: "active",
     tag: "loen",
-    comingSoon: true,
     about:
-      "loen app은 교회 청년부 공동체를 위해 만든 신앙 앱입니다. 설교를 다시 곱씹는 복습(OBS), 나의 신앙노트, 우리 그룹(오이코스) 활동을 한 곳에서 이어갑니다. 현재 정식 출시 전 베타 단계입니다.",
+      "onu(온유)는 교회 청년부 공동체를 위해 만든 신앙 앱입니다. 설교를 다시 곱씹는 복습(OBS), 나의 신앙노트, 우리 그룹(오이코스) 활동을 한 곳에서 이어갑니다. 이제 App Store와 Google Play에서 만나보실 수 있습니다.",
     features: [
       { title: "설교 복습(OBS)", desc: "빈칸·퀴즈·적용으로 설교를 다시 새깁니다." },
       { title: "신앙노트", desc: "주차별로 나의 묵상과 적용을 기록합니다." },
       { title: "오이코스", desc: "우리 그룹의 구성원과 활동을 함께 관리합니다." },
     ],
     downloads: [
-      // 빌드 링크 준비되면 href 교체. iOS는 TestFlight 초대 링크.
-      { platform: "android", label: "Android (베타 APK)", href: "", note: "설치 시 '출처 불명 앱 허용' 필요" },
-      { platform: "ios", label: "iOS (TestFlight)", href: "", note: "TestFlight 앱 설치 후 초대 수락" },
+      { platform: "android", label: "Android (Google Play)", href: "https://play.google.com/store/apps/details?id=com.loen.app&hl=ko" },
+      { platform: "ios", label: "iOS (App Store)", href: "https://apps.apple.com/kr/app/on-u/id6779048910" },
     ],
   },
 ];
