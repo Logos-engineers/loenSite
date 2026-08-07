@@ -6,23 +6,24 @@ export const metadata: Metadata = { title: "소개" };
 
 export default function AboutPage() {
   return (
-    <div className="mx-auto max-w-3xl px-6 py-16 text-center">
+    <div className="text-center">
       <h1 className="sr-only">{site.name} 소개</h1>
 
-      {/* 히어로 — 로고 + 한 줄 정체성 */}
-      <img
-        src="/loen-logo.png"
-        alt="loen — Build together"
-        className="mx-auto h-32 w-auto sm:h-40"
-      />
-      <p className="mx-auto mt-8 max-w-md text-pretty text-lg leading-relaxed text-zinc-700 sm:text-xl">
-        loen은 <b className="font-semibold text-zinc-900">logos-engineers</b>라는 뜻이에요.{" "}
-        <br className="hidden sm:block" />
-        무언가 만드는 걸 좋아하는 사람들이 모여 있는 곳이죠.
-      </p>
+      {/* 히어로 — onu 메인 컬러 그라데이션(위) → 투명(아래) */}
+      <section className="bg-gradient-to-b from-indigo-200 via-violet-100 to-white px-6 pb-16 pt-16 sm:pb-20">
+        <img
+          src="/loen-logo.png"
+          alt="loen — Build together"
+          className="mx-auto h-32 w-auto sm:h-40"
+        />
+        <p className="mx-auto mt-8 max-w-md text-pretty text-lg leading-relaxed text-zinc-700 sm:text-xl">
+          loen은 <b className="font-semibold text-zinc-900">logos-engineers</b>라는 뜻이에요.{" "}
+          <br className="hidden sm:block" />
+          무언가 만드는 걸 좋아하는 사람들이 모여 있는 곳이죠.
+        </p>
+      </section>
 
-      <div className="mx-auto mt-16 h-px w-16 bg-zinc-200" />
-
+      <div className="mx-auto max-w-3xl px-6 pb-16">
       {/* 왜 만드나 */}
       <section className="mt-16">
         <p className="font-mono text-xs uppercase tracking-widest text-indigo-500">// why</p>
@@ -42,12 +43,14 @@ export default function AboutPage() {
               key={m.name}
               className="group relative rounded-2xl border border-zinc-200 bg-white px-5 py-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-md"
             >
-              {/* 오른쪽 위 미니 onu 로고 — onu를 만든 멤버 표식 */}
-              <img
-                src="/onu-logo.png"
-                alt="onu"
-                className="absolute right-3 top-3 h-4 w-4 rounded-[4px]"
-              />
+              {/* 오른쪽 위 미니 onu 로고 — onu를 만든 멤버만 */}
+              {m.onu && (
+                <img
+                  src="/onu-logo.png"
+                  alt="onu"
+                  className="absolute right-3 top-3 h-4 w-4 rounded-[4px]"
+                />
+              )}
               {m.image ? (
                 <img
                   src={m.image}
@@ -60,7 +63,9 @@ export default function AboutPage() {
                 </div>
               )}
               <h3 className="mt-3 text-lg font-semibold text-zinc-900">{m.name}</h3>
-              <p className="mt-1.5 font-mono text-xs text-indigo-600">// {m.role}</p>
+              {m.role && (
+                <p className="mt-1.5 font-mono text-xs text-indigo-600">// {m.role}</p>
+              )}
               {m.bio && <p className="mt-3 text-pretty text-sm text-zinc-600">{m.bio}</p>}
               {m.links && m.links.length > 0 && (
                 <div className="mt-4 flex flex-wrap justify-center gap-3 text-sm">
@@ -87,6 +92,7 @@ export default function AboutPage() {
         <a href={site.githubUrl} className="text-indigo-600 hover:text-indigo-500">
           GitHub
         </a>
+      </div>
       </div>
     </div>
   );
