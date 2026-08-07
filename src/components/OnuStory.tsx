@@ -135,23 +135,17 @@ export default function OnuStory({
       </section>
 
       {/* ── ④ 지향 (그라데이션 밴드 · 큰 선언) ──────────────────── */}
-      <section className="relative flex min-h-svh items-center justify-center bg-gradient-to-br from-indigo-600 via-violet-600 to-indigo-500 px-6 py-20 sm:py-32">
-        {/* 위: 앞 다크 섹션과, 아래: 뒤 흰 섹션과 경계 없이 이어지도록 페이드 */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-zinc-950 to-transparent"
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white to-transparent"
-        />
+      <section className="bg-zinc-950 px-6 pb-40 pt-8 sm:pb-48 sm:pt-12">
         <Reveal className="relative z-10 mx-auto max-w-3xl text-center">
-          <h2 className="text-balance text-2xl font-semibold leading-snug tracking-tight text-white sm:text-4xl">
+          <h2 className="text-balance text-2xl font-semibold leading-snug tracking-tight text-violet-300 sm:text-4xl">
             하나님과 더 친밀해지도록 돕고,{" "}
             <br className="hidden sm:block" />
             신앙의 여정을 곁에서 함께 걷는{" "}
             <br className="hidden sm:block" />
-            <span className="text-indigo-100">동역자 같은 앱</span>.
+            <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-fuchsia-400 bg-clip-text font-bold text-transparent">
+              동역자 같은 앱
+            </span>
+            .
           </h2>
         </Reveal>
       </section>
