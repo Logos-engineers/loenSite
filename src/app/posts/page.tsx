@@ -19,7 +19,14 @@ export default function PostsPage() {
             <li key={post.slug}>
               <Link href={`/posts/${post.slug}`} className="block py-6">
                 <time className="text-sm text-zinc-400">{post.date}</time>
-                <h2 className="mt-1 text-lg font-medium text-zinc-900">{post.title}</h2>
+                <h2 className="mt-1 flex flex-wrap items-center gap-2 text-lg font-medium text-zinc-900">
+                  {post.title}
+                  {post.closed && (
+                    <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-semibold text-zinc-500">
+                      마감
+                    </span>
+                  )}
+                </h2>
                 <p className="mt-1 text-sm text-zinc-600">{post.excerpt}</p>
               </Link>
             </li>

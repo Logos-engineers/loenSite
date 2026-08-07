@@ -28,10 +28,10 @@ export default async function PostPage({
   const post = getPost(slug);
   if (!post) notFound();
 
-  // 안드로이드 신청 폼만 정원(12명) 차면 마감. iOS는 마감 없음.
-  // count 조회 실패(null)면 안전하게 폼 열어둠.
-  let applyClosed = false;
-  if (post.applyForm === "Android") {
+  // 모집 마감 판정: posts 데이터의 closed 플래그가 우선.
+  // 안드로이드는 정원(12명)이 차도 마감. count 조회 실패(null)면 안전하게 폼 열어둠.
+  let applyClosed = post.closed === true;
+  if (!applyClosed && post.applyForm === "Android") {
     const count = await getTesterCount("Android");
     applyClosed = count !== null && count >= TESTER_CAPACITY;
   }
@@ -40,8 +40,13 @@ export default async function PostPage({
     <article className="mx-auto max-w-2xl px-6 py-20">
       <time className="text-sm text-zinc-400">{post.date}</time>
       <h1 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-900">{post.title}</h1>
-      {((post.deadline && !applyClosed) || post.testPeriod) && (
+      {(post.closed || (post.deadline && !applyClosed) || post.testPeriod) && (
         <div className="mt-4 flex flex-wrap gap-2">
+          {post.closed && (
+            <span className="inline-flex items-center gap-2 rounded-full bg-zinc-100 px-4 py-2 text-sm font-bold text-zinc-500 ring-1 ring-zinc-200">
+              ✅ 모집 마감
+            </span>
+          )}
           {post.deadline && !applyClosed && (
             <span className="inline-flex items-center gap-2 rounded-full bg-rose-50 px-4 py-2 text-sm font-bold text-rose-600 ring-1 ring-rose-100">
               🗓️ 신청 마감 · {post.deadline}까지
@@ -74,7 +79,9 @@ export default async function PostPage({
             <p className="text-2xl">🙏</p>
             <p className="mt-2 font-semibold text-zinc-800">모집이 마감되었어요</p>
             <p className="mt-1 text-sm text-zinc-600">
-              정원 {TESTER_CAPACITY}명이 모두 찼어요. 관심 가져주셔서 감사합니다!
+              {post.closed
+                ? "테스터 모집이 마감되었어요. 관심 가져주셔서 감사합니다!"
+                : `정원 ${TESTER_CAPACITY}명이 모두 찼어요. 관심 가져주셔서 감사합니다!`}
             </p>
           </div>
         ) : (

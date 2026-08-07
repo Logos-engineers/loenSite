@@ -33,8 +33,9 @@ export default async function ProductPage({
 
   // 곧 공개 — 상세 비공개, WebGL 연출만 노출 (모집 중이면 그 소식으로 링크)
   if (product.comingSoon) {
+    // 모집 중(마감되지 않은) 글이 있을 때만 모집 CTA 노출
     const recruit = posts.find(
-      (p) => p.productTag === product.tag && p.applyForm,
+      (p) => p.productTag === product.tag && p.applyForm && !p.closed,
     );
     return (
       <ComingSoonHero

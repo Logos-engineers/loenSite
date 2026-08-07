@@ -7,7 +7,11 @@ export default function AboutPage() {
   return (
     <div className="mx-auto max-w-3xl px-6 py-20">
       <h1 className="text-3xl font-semibold tracking-tight text-zinc-900">{site.name} 소개</h1>
-      <p className="mt-6 text-lg text-zinc-600">{site.description}</p>
+      <p className="mt-6 text-lg text-zinc-600">
+        Loen은 Logos 교회 청년부의 개발 동아리입니다.
+        <br />
+        우리가 직접 만든 서비스와 소식을 한곳에 모았습니다.
+      </p>
 
       <h2 className="mt-12 text-xl font-semibold text-zinc-900">왜 만드나</h2>
       <p className="mt-3 text-zinc-600">
