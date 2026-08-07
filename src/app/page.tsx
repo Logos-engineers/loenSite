@@ -51,6 +51,13 @@ export default function Home() {
                 className="block h-full rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:border-zinc-300 hover:shadow-md"
               >
                 <div className="mb-3 flex items-center gap-2">
+                  {p.logo && (
+                    <img
+                      src={p.logo}
+                      alt=""
+                      className="h-8 w-8 rounded-lg ring-1 ring-black/5"
+                    />
+                  )}
                   <h3 className="text-lg font-medium text-zinc-900">{p.name}</h3>
                   {p.comingSoon ? (
                     <span className="rounded-full bg-zinc-900 px-2 py-0.5 text-xs font-medium text-white">

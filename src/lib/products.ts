@@ -13,6 +13,8 @@ export type Product = {
   name: string;
   oneLiner: string;
   status: ProductStatus;
+  // 앱 아이콘/로고 (public 기준 경로). 없으면 미표시.
+  logo?: string;
   // 상세 본문(섹션). 길어지면 추후 MDX로 이관.
   about: string;
   features: { title: string; desc: string }[];
@@ -29,6 +31,7 @@ export const products: Product[] = [
     name: "onu(온유)",
     oneLiner: "설교 복습·신앙노트·오이코스를 한 앱에서. 청년부를 위한 신앙 앱.",
     status: "active",
+    logo: "/onu-logo.png",
     tag: "loen",
     about:
       "onu(온유)는 교회 청년부 공동체를 위해 만든 신앙 앱입니다. 설교를 다시 곱씹는 복습(OBS), 나의 신앙노트, 우리 그룹(오이코스) 활동을 한 곳에서 이어갑니다. 이제 App Store와 Google Play에서 만나보실 수 있습니다.",

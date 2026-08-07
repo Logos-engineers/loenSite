@@ -51,6 +51,13 @@ export default async function ProductPage({
   return (
     <div className="mx-auto max-w-3xl px-6 py-20">
       <div className="flex items-center gap-3">
+        {product.logo && (
+          <img
+            src={product.logo}
+            alt={`${product.name} 로고`}
+            className="h-14 w-14 rounded-2xl shadow-sm ring-1 ring-black/5"
+          />
+        )}
         <h1 className="text-3xl font-semibold tracking-tight text-zinc-900">{product.name}</h1>
         {product.status === "beta" && (
           <span className="rounded-full bg-indigo-100 px-2.5 py-1 text-xs font-medium text-indigo-600">
