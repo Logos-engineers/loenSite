@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { products, getProduct } from "@/lib/products";
 import { posts } from "@/lib/posts";
 import ComingSoonHero from "@/components/ComingSoonHero";
+import OnuStory from "@/components/OnuStory";
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -47,6 +48,11 @@ export default async function ProductPage({
   }
 
   const related = posts.filter((p) => p.productTag === product.tag);
+
+  // onu(로엔 대표작)는 애플식 전용 스토리 페이지로 렌더
+  if (product.slug === "loen") {
+    return <OnuStory product={product} posts={related} />;
+  }
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-20">
