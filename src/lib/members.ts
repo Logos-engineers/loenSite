@@ -11,7 +11,6 @@ export const members: Member[] = [
   {
     name: "남현서",
     role: "개발 · 팀장",
-    image: "/members/namhyunseo.png",
     bio: "onu(온유)를 만들고 있어요.",
   },
   {
