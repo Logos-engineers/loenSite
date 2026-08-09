@@ -19,11 +19,13 @@ export const members: Member[] = [
     name: "박채연",
     role: "기획",
     onu: true,
+    image: "/members/parkchaeyeon.png",
   },
   {
     name: "이윤재",
     role: "디자인",
     onu: true,
+    image: "/members/leeyunjae.png",
   },
   { name: "김성혜" },
   { name: "이동훈" },
