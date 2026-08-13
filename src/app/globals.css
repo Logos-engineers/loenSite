@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /* 라이트(쿨 화이트) 고정 — Hero 섹션만 자체적으로 검은 배경 */
 :root {

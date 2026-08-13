@@ -13,6 +13,7 @@ export const site = {
 
 export const nav = [
   { href: "/products", label: "제품" },
+  { href: "/blog", label: "블로그" },
   { href: "/posts", label: "소식" },
   { href: "/about", label: "소개" },
   // /reports 는 noindex·링크온리라 글로벌 네비에 노출하지 않음
