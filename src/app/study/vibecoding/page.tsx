@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "청년부 AI 활용 스터디 (바이브코딩)",
@@ -98,6 +99,10 @@ const nextPlans = [
     body: "로그인·서버·데이터베이스처럼 더 깊은 내용은 별도의 심화 스터디·커뮤니티로 계속 이어갈 예정이에요.",
   },
 ];
+
+const applyHref = `mailto:${site.contactEmail}?subject=${encodeURIComponent(
+  "청년부 AI 활용 스터디 신청",
+)}&body=${encodeURIComponent("오이코스: \n이름: ")}`;
 
 export default function VibecodingStudyPage() {
   return (
@@ -301,9 +306,16 @@ export default function VibecodingStudyPage() {
             <p className="mx-auto mt-4 max-w-lg text-zinc-400">
               채팅에서도 하던 것들을 훨씬 확장성 있게 쓰는 법을 함께 익혀요. 관심 있으면 편하게 신청해 주세요.
             </p>
-            <div className="mt-9 inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur">
-              🙋 신청·진행 : 남현서에게 톡 또는 DM
-            </div>
+            <a
+              href={applyHref}
+              className="mt-9 inline-flex items-center gap-2.5 rounded-full bg-indigo-500 px-7 py-3.5 text-sm font-semibold text-white shadow-[0_0_30px_rgba(99,102,241,0.4)] transition-all hover:-translate-y-0.5 hover:bg-indigo-400"
+            >
+              📮 {site.contactEmail} 로 신청하기
+            </a>
+            <p className="mt-4 text-sm text-zinc-400">
+              메일로 <span className="font-semibold text-zinc-200">오이코스와 이름</span>을 보내주세요.
+              <span className="text-zinc-500"> · 진행 : 남현서</span>
+            </p>
             <p className="mt-6 text-xs leading-relaxed text-zinc-500">
               준비물·접속 방법 등 자세한 안내는 신청하시면 개별로 알려드려요.
             </p>
