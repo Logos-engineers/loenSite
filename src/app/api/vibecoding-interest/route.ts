@@ -1,5 +1,6 @@
 import { neon } from "@neondatabase/serverless";
 import {
+  vibecodingAiUsageValues,
   vibecodingInterestValues,
   vibecodingTopicValues,
 } from "@/lib/vibecoding-survey";
@@ -8,12 +9,15 @@ export const runtime = "nodejs";
 
 const interestValues = new Set<string>(vibecodingInterestValues);
 const topicValues = new Set<string>(vibecodingTopicValues);
+const aiUsageValues = new Set<string>(vibecodingAiUsageValues);
 
 type SurveyPayload = {
   name?: unknown;
   oikos?: unknown;
   interest?: unknown;
   topics?: unknown;
+  aiUsage?: unknown;
+  additionalTopic?: unknown;
   website?: unknown;
 };
 
@@ -51,6 +55,9 @@ export async function POST(request: Request) {
   const name = typeof payload.name === "string" ? payload.name.trim() : "";
   const oikos = typeof payload.oikos === "string" ? payload.oikos.trim() : "";
   const interest = typeof payload.interest === "string" ? payload.interest : "";
+  const aiUsage = typeof payload.aiUsage === "string" ? payload.aiUsage : "";
+  const additionalTopic =
+    typeof payload.additionalTopic === "string" ? payload.additionalTopic.trim() : "";
   const topics = Array.isArray(payload.topics)
     ? [...new Set(payload.topics.filter((topic): topic is string => typeof topic === "string"))]
     : [];
@@ -60,6 +67,8 @@ export async function POST(request: Request) {
     name.length <= 50 &&
     oikos.length <= 50 &&
     interestValues.has(interest) &&
+    aiUsageValues.has(aiUsage) &&
+    additionalTopic.length <= 200 &&
     topics.length > 0 &&
     topics.length <= vibecodingTopicValues.length &&
     topics.every((topic) => topicValues.has(topic));
@@ -77,8 +86,10 @@ export async function POST(request: Request) {
   try {
     const sql = neon(databaseUrl);
     await sql`
-      insert into vibecoding_interest_responses (name, oikos, interest, topics)
-      values (${name}, ${oikos || null}, ${interest}, ${topics})
+      insert into vibecoding_interest_responses
+        (name, oikos, interest, topics, ai_usage, additional_topic)
+      values
+        (${name}, ${oikos || null}, ${interest}, ${topics}, ${aiUsage}, ${additionalTopic || null})
     `;
     return Response.json({ ok: true });
   } catch (error) {

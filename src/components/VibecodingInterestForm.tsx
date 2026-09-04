@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import type { FormEvent } from "react";
 import Image from "next/image";
+import { vibecodingAiUsageValues } from "@/lib/vibecoding-survey";
 
 const interests = [
   { value: "열리면 참여할게요", label: "참여할게요" },
@@ -66,6 +67,8 @@ export default function VibecodingInterestForm() {
     const name = String(data.get("name") ?? "").trim();
     const oikos = String(data.get("oikos") ?? "").trim();
     const interest = String(data.get("interest") ?? "");
+    const aiUsage = String(data.get("aiUsage") ?? "");
+    const additionalTopic = String(data.get("additionalTopic") ?? "").trim();
     const website = String(data.get("website") ?? "");
 
     setError(null);
@@ -75,7 +78,15 @@ export default function VibecodingInterestForm() {
       const response = await fetch("/api/vibecoding-interest", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, oikos, interest, topics: selectedTopics, website }),
+        body: JSON.stringify({
+          name,
+          oikos,
+          interest,
+          topics: selectedTopics,
+          aiUsage,
+          additionalTopic,
+          website,
+        }),
       });
       const result = (await response.json()) as { message?: string };
 
@@ -173,6 +184,27 @@ export default function VibecodingInterestForm() {
           ))}
         </div>
       </fieldset>
+
+      <div className="grid gap-4 border-t border-zinc-100 pt-7 sm:grid-cols-2">
+        <label className="text-sm font-semibold text-zinc-700">
+          AI 사용 정도 <span className="text-indigo-500">*</span>
+          <select name="aiUsage" required defaultValue="" className={inputClass}>
+            <option value="" disabled>선택해 주세요</option>
+            {vibecodingAiUsageValues.map((value) => (
+              <option key={value} value={value}>{value}</option>
+            ))}
+          </select>
+        </label>
+        <label className="text-sm font-semibold text-zinc-700">
+          더 배우고 싶은 내용 <span className="font-normal text-zinc-400">선택</span>
+          <input
+            name="additionalTopic"
+            maxLength={200}
+            placeholder="있다면 짧게 적어주세요"
+            className={inputClass}
+          />
+        </label>
+      </div>
 
       {isSubmitted && (
         <p role="status" className="rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-700">

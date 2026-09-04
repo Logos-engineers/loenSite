@@ -13,3 +13,9 @@ export const vibecodingTopicValues = [
   "먼저 가능성 둘러보기",
 ] as const;
 
+export const vibecodingAiUsageValues = [
+  "거의 사용하지 않아요",
+  "가끔 사용해요",
+  "자주 사용해요",
+  "업무에 적극 활용해요",
+] as const;
