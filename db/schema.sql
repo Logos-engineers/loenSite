@@ -69,3 +69,19 @@ begin
       check (additional_topic is null or char_length(additional_topic) <= 200);
   end if;
 end $$;
+
+-- 로고스 랩 모집 신청 (/logos-lab)
+create table if not exists logos_lab_applications (
+  id bigint generated always as identity primary key,
+  name text not null check (char_length(name) between 1 and 50),
+  phone text not null check (char_length(phone) between 8 and 20),
+  oikos text check (oikos is null or char_length(oikos) <= 50),
+  activities text[] not null check (
+    cardinality(activities) between 1 and 3
+    and activities <@ array['바이브코딩', '단발성 모임', '커뮤니티']::text[]
+  ),
+  ai_tool text not null check (ai_tool in ('Claude', 'ChatGPT', 'Gemini', '아직 없음')),
+  first_session text not null check (first_session in ('참여 가능', '일정 조율 필요')),
+  note text check (note is null or char_length(note) <= 200),
+  created_at timestamptz not null default now()
+);
